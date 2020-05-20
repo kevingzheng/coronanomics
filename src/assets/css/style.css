@@ -14,7 +14,6 @@
     font-size: 30px;
     height: 800px;
     text-align: center;
-       
 }
 
 nav {
@@ -24,7 +23,7 @@ nav {
     position: relative;
     text-align: center;
     width: 100%;
-    top: 600px;
+    top: 400px;
     
 }
 
@@ -62,4 +61,40 @@ h2 {
     top: 180px;
 
 
+}
+
+.getstarted {
+    padding: 40px 0px;
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    top: 200px;
+}
+
+.getstarted a {
+    background: #D7263D;
+    border: 1px solid #D7263D;
+    border-radius: 3px;
+    color: #FFF;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.getstarted a:hover {
+    background: #FFF;
+    border: 1px solid #D7263D;
+    color: #D7263D;
+    animation: ease;
+}
+
+
+.gray-background {
+	background-color: "gray";
+	position: relative;
+	bottom: 10px;
+    scroll-behavior: smooth;
 }
