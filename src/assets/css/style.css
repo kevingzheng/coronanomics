@@ -3,7 +3,7 @@
     padding: 0;
 }
 
-.roboto-font {
+.title-font {
     font-family: 'Zilla Slab', serif;
 }
 
@@ -14,7 +14,6 @@
     font-size: 30px;
     height: 800px;
     text-align: center;
-       
 }
 
 nav {
@@ -24,7 +23,7 @@ nav {
     position: relative;
     text-align: center;
     width: 100%;
-    top: 600px;
+    top: 400px;
     
 }
 
@@ -63,3 +62,104 @@ h2 {
 
 
 }
+
+.getstarted {
+    padding: 40px 0px;
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    top: 200px;
+}
+
+.getstarted a {
+    background: #D7263D;
+    border: 1px solid #D7263D;
+    border-radius: 3px;
+    color: #FFF;
+    display: inline-block;
+    margin: 10px 10px;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.getstarted a:hover {
+    background: #FFF;
+    border: 1px solid #D7263D;
+    color: #D7263D;
+    animation: ease;
+}
+
+
+.gray-background {
+	background-color: "gray";
+	position: relative;
+	bottom: 10px;
+    scroll-behavior: smooth;
+}
+
+.title-format {
+    font-size: 100px;
+    text-align: center;
+}
+
+.overview-color {
+    background-color: #D3D3D3;
+    padding-top: 70px; 
+    padding-bottom: 450px;
+}
+
+.paragraph-size {
+    font-size: 35px;
+    text-align: center;
+}
+
+#infection-start {
+    position: relative;
+    top: 200px;
+    
+}
+
+.section-title {
+    font-size: 50px;
+    text-align: center;
+}
+
+.separation {
+    position: relative;
+    top: 350px;
+}
+
+table {
+    border: 3px solid #D7263D;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    height: 500px;
+    position: relative;
+    top: 100px;
+    border-collapse: collapse;
+    background-color: rgb(224, 220, 220);
+
+  }
+
+tr, td {
+    text-align: center;
+    border: 3px solid #D7263D;
+    
+
+}
+
+.tab {
+    font-size: 50px;
+    font-weight: 50px;
+    background-color: #D7263D;
+    color: white;
+    
+}
+
+th {
+    width: 200px;
+}
+
