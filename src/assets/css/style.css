@@ -4,7 +4,7 @@
 }
 
 .title-font {
-    font-family: 'Zilla Slab', serif;
+    font-family: 'Poppins', serif;
 }
 
 .earth-background {
@@ -100,7 +100,7 @@ h2 {
 }
 
 .title-format {
-    font-size: 100px;
+    font-size: 70px;
     text-align: center;
 }
 
@@ -113,12 +113,6 @@ h2 {
 .paragraph-size {
     font-size: 35px;
     text-align: center;
-}
-
-#infection-start {
-    position: relative;
-    top: 200px;
-    
 }
 
 .section-title {
@@ -163,3 +157,109 @@ th {
     width: 200px;
 }
 
+
+#infection-data {
+    position: relative;
+    top: 200px;
+    color: white;
+}
+
+.infection-color {
+    background-color: #D7263D;
+    padding-top: 70px; 
+    padding-bottom: 450px;
+}
+
+.infection-graph {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.line{
+    fill:none;
+    stroke:black;
+    stroke-width:4px;
+}
+
+form {
+    position: relative;
+    margin-left: 80%;
+    bottom: 500px;
+    white-space: nowrap;
+}
+
+label {
+    font-size: 20px;
+    color: white;
+    font-family: 'Poppins', serif;
+}
+
+
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #D3D3D3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid #D7263D;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
