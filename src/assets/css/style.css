@@ -158,19 +158,19 @@ th {
 }
 
 
-#infection-data {
+#unemployment-data {
     position: relative;
     top: 200px;
     color: white;
 }
 
-.infection-color {
+.unemployment-color {
     background-color: #D7263D;
     padding-top: 70px; 
     padding-bottom: 450px;
 }
 
-.infection-graph {
+.unemployment-graph {
   display: block;
   margin-left: auto;
   margin-right: auto;
