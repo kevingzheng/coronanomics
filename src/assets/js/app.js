@@ -37,7 +37,7 @@ var svg = d3.select("#unemployment-graph")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 
-d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHIA3HDDQ4RIEJYGEPC6236KU",
+d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
 
   function(d) {
     return {
