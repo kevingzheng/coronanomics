@@ -28,16 +28,16 @@
 	
 		<nav id="navtabs">
 			<!-- Add tabs here -->
-			<a href="#Infection Data">Infection Data</a>
-			<a href="#Stock Prices">Stock Prices</a>
-			<a href="#Labor Statistics">Labor Statistics</a>
+			<a href="#InfectionData">Infection Data</a>
+			<a href="#StockPrices">Stock Prices</a>
+			<a href="#LaborStatistics">Labor Statistics</a>
 			<a href="#Inflation">Inflation</a>
 		</nav>
 	</div>
 
 	<!-- Site overview -->
 	<div class="overview-color">
-		<h1 class="title-font title-format">Overview</h1>
+		<h1 class="title-font overview-format">Overview</h1>
 		<p class="title-font paragraph-size">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente 
 			distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?
 			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente 
@@ -91,29 +91,32 @@
 
 	<!-- infection data div -->
 	<div id = "unemployment-data" class = "unemployment-color">
-		<h1 class = "title-font title-format">Unemployment Graph</h1>
+		<h1 id = "LaborStatistics" class = "title-font unemployment-format">Labor Statistics</h1>
 		<!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
 
-	<form>
-		<label class="container">Data Category 1
-		  <input type="checkbox" checked="checked">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Data Category 2
-		  <input type="checkbox">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Data Category 3
-		  <input type="checkbox">
-		  <span class="checkmark"></span>
-		</label>
-		<label class="container">Data Category 4
-		  <input type="checkbox">
-		  <span class="checkmark"></span>
-		</label>
-	</form>
+		<form>
+			<label class="container">Data Category 1
+			<input type="checkbox" checked="checked">
+			<span class="checkmark"></span>
+			</label>
+			<label class="container">Data Category 2
+			<input type="checkbox">
+			<span class="checkmark"></span>
+			</label>
+			<label class="container">Data Category 3
+			<input type="checkbox">
+			<span class="checkmark"></span>
+			</label>
+			<label class="container">Data Category 4
+			<input type="checkbox">
+			<span class="checkmark"></span>
+			</label>
+		</form>
 
-	<div id = "unemployment-graph"></div></div>
+	<!-- D3 graph for unemployment data -->
+	<div id = "unemployment-graph" class = title-font></div>
+
+	</div>
 
 	<script src="./assets/js/app.js"></script>
 
