@@ -22,12 +22,12 @@ $(document).ready(function(){
 var margin = {
   top:10,
   right:30,
-  bottom:30,
+  bottom:60,
   left:60
 };
 
-var width = 460 - margin.left - margin.right;
-var height = 400 - margin.top - margin.bottom;
+var width = 700 - margin.left - margin.right;
+var height = 600 - margin.top - margin.bottom;
 
 var svg = d3.select("#unemployment-graph")
           .append("svg")
@@ -63,6 +63,21 @@ d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/as
     svg.append("g")
       .call(d3.axisLeft(y));
 
+    svg.append("text")             
+    .attr("transform",
+          "translate(" + (width/2) + " ," + 
+                          (height + margin.top + 30) + ")")
+    .style("text-anchor", "middle")
+    .text("Date");
+
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Unemployment Rate");      
+
 
     svg.append("linearGradient")
        .attr("id", "line-gradient")
@@ -90,4 +105,9 @@ d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/as
              .y(function(d) {return y(d.value)})
              ) 
 
+   
+
 }) 
+
+
+
