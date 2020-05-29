@@ -11,7 +11,7 @@
 <script src="https://d3js.org/d3.v4.js"></script>
 <!-- Import more fonts, etc. here -->
 
-<body>
+<body onload="loadUSA()">
 
 	<!-- Landing page div -->
 	<div class="earth-background title-font">
@@ -95,12 +95,12 @@
 		<!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
 
 		<form>
-			<label class="container">Data Category 1
-			<input type="checkbox" checked="checked">
+			<label class="container" onclick="changeToUSA()">USA
+			<input type="checkbox">
 			<span class="checkmark"></span>
 			</label>
-			<label class="container">Data Category 2
-			<input type="checkbox">
+			<label class="container">Japan
+			<input type="checkbox" onclick ="changeToJapan()">
 			<span class="checkmark"></span>
 			</label>
 			<label class="container">Data Category 3
