@@ -33,23 +33,19 @@ var height = 400 - margin.top - margin.bottom;
 // u_$(country)Enabled indicates unemployment graph
 let u_japanEnabled = false;
 let u_USAEnabled = true;
-
-// // Enum class for unemployment graph state
-// const ugraphEnum = {
-//   "USA": 1,
-//   "JAPAN": 2,
-//   "FRANCE": 3,
-//   "CHINA": 4,
-//   "GERMANY": 5
-// }
-
-// By default graph displays USA data
-// let ugraphState = ugraphEnum.USA;
+let u_franceEnabled = false;
+let u_germanyEnabled = false;
+let u_unitedkingdomEnabled = false; 
 
 let overX = 0;
 let overY = 0;
 let overMax = 0;
+// ONLOAD actions
+////////////////////////////////
 
+////////////////////////////////
+////////////////////////////////
+// Load unemployment graph
 var svg = d3.select("#unemployment-graph")
           .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -57,6 +53,9 @@ var svg = d3.select("#unemployment-graph")
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+////////////////////////////////
+////////////////////////////////
+// Load USA unemployment data (csv, default data)
 function loadUSA() {
   d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
 
@@ -211,6 +210,46 @@ function changeToUSA() {
     }
 
     u_USAEnabled = !u_USAEnabled;
+}
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Change graph data to USA
+function changeToFrance() {
+  // Add data if it doesn't exist yet
+  if(!u_franceEnabled) {
+    //JAPANESE DATA
+    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K",
+
+      function(d) {
+        return {
+          date: d3.timeParse("%Y-%m-%d")(d.date),
+          value: d.value
+        }
+      },
+
+      function(data) {
+        var newx = overX;
+        var newy = overY;    
+
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("id", "france-data")
+          .attr("stroke", "url(#line-gradient)")
+          .attr("stroke-width", 2)
+          .attr("d", d3.line()
+                .x(function(d) {return newx(d.date) })
+                .y(function(d) {return newy(d.value)})
+                ) 
+      }) 
+    } // end if
+
+    else {
+      d3.select("#france-data").remove();
+    }
+
+    u_franceEnabled = !u_franceEnabled;
 }
 
 
