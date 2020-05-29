@@ -121,16 +121,16 @@ function loadUSA() {
             .attr("offset", function(d){ return d.offset;})
             .attr("stop-color", function(d) {return d.color;});
 
-      // svg.append("path")
-      //   .datum(data)
-      //   .attr("id", "usa-data")
-      //   .attr("fill", "none")
-      //   .attr("stroke", "url(#line-gradient)")
-      //   .attr("stroke-width", 2)
-      //   .attr("d", d3.line()
-      //         .x(function(d) {return x(d.date) })
-      //         .y(function(d) {return y(d.value)})
-      //         ) 
+      svg.append("path")
+        .datum(data)
+        .attr("id", "usa-data")
+        .attr("fill", "none")
+        .attr("stroke", "url(#line-gradient)")
+        .attr("stroke-width", 2)
+        .attr("d", d3.line()
+              .x(function(d) {return x(d.date) })
+              .y(function(d) {return y(d.value)})
+              ) 
   }) 
 }
 ///////////////////////////////////////////////
