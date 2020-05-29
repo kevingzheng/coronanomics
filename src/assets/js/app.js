@@ -214,7 +214,7 @@ function changeToUSA() {
 
 ///////////////////////////////////////////////
 ///////////////////////////////////////////////
-// Change graph data to USA
+// Change graph data to France
 function changeToFrance() {
   // Add data if it doesn't exist yet
   if(!u_franceEnabled) {
@@ -250,6 +250,88 @@ function changeToFrance() {
     }
 
     u_franceEnabled = !u_franceEnabled;
+}
+
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Change graph data to Germany
+function changeToGermany() {
+  // Add data if it doesn't exist yet
+  if(!u_germanyEnabled) {
+    //JAPANESE DATA
+    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE",
+
+      function(d) {
+        return {
+          date: d3.timeParse("%Y-%m-%d")(d.date),
+          value: d.value
+        }
+      },
+
+      function(data) {
+        var newx = overX;
+        var newy = overY;    
+
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("id", "germany-data")
+          .attr("stroke", "url(#line-gradient)")
+          .attr("stroke-width", 2)
+          .attr("d", d3.line()
+                .x(function(d) {return newx(d.date) })
+                .y(function(d) {return newy(d.value)})
+                ) 
+      }) 
+    } // end if
+
+    else {
+      d3.select("#germany-data").remove();
+    }
+
+    u_germanyEnabled = !u_germanyEnabled;
+}
+
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+// Change graph data to United Kingdom
+function changeToUnitedKingdom() {
+  // Add data if it doesn't exist yet
+  if(!u_unitedkingdomEnabled) {
+    //JAPANESE DATA
+    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ",
+
+      function(d) {
+        return {
+          date: d3.timeParse("%Y-%m-%d")(d.date),
+          value: d.value
+        }
+      },
+
+      function(data) {
+        var newx = overX;
+        var newy = overY;    
+
+        svg.append("path")
+          .datum(data)
+          .attr("fill", "none")
+          .attr("id", "unitedkingdom-data")
+          .attr("stroke", "url(#line-gradient)")
+          .attr("stroke-width", 2)
+          .attr("d", d3.line()
+                .x(function(d) {return newx(d.date) })
+                .y(function(d) {return newy(d.value)})
+                ) 
+      }) 
+    } // end if
+
+    else {
+      d3.select("#unitedkingdom-data").remove();
+    }
+
+    u_unitedkingdomEnabled = !u_unitedkingdomEnabled;
 }
 
 
