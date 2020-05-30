@@ -31,17 +31,37 @@ var height = 400 - margin.top - margin.bottom;
 
 // STATE variables for D3 unemployment graphs
 // u_$(country)Enabled indicates unemployment graph
-let u_japanEnabled = false;
-let u_USAEnabled = true;
-let u_franceEnabled = false;
-let u_germanyEnabled = false;
-let u_unitedkingdomEnabled = false; 
+let u_japanEnabled = {
+  "val" : false
+};
+let u_USAEnabled = {
+  "val" : true
+};
+let u_franceEnabled = {
+  "val": false
+};
+let u_germanyEnabled = {
+  "val": false
+};
+let u_unitedkingdomEnabled = {
+  "val": false
+};
+
+
+// Data variables
+
 
 let overX = 0;
 let overY = 0;
 let overMax = 0;
 // ONLOAD actions
 ////////////////////////////////
+let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2";
+let japancsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK";
+let francecsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K";
+let germanycsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE";
+let unitedkingdomcsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ";
+
 
 ////////////////////////////////
 ////////////////////////////////
@@ -132,14 +152,11 @@ function loadUSA() {
               ) 
   }) 
 }
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to Japan
-function changeToJapan() {
+
+function changeTo(country, csv, enabled) {
   // Add data if it doesn't exist yet
-  if(!u_japanEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK",
+  if(!enabled["val"]) {
+    d3.csv(csv,
 
       function(d) {
         return {
@@ -155,7 +172,7 @@ function changeToJapan() {
         svg.append("path")
           .datum(data)
           .attr("fill", "none")
-          .attr("id", "japan-data")
+          .attr("id", country)
           .attr("stroke", "url(#line-gradient)")
           .attr("stroke-width", 2)
           .attr("d", d3.line()
@@ -166,173 +183,213 @@ function changeToJapan() {
     } // end if
 
     else {
-      d3.select("#japan-data").remove();
+      d3.select("#" + country).remove();
     }
 
-    u_japanEnabled = !u_japanEnabled;
-}
+    enabled["val"] = !enabled["val"];
+} // end changeTo
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// // Change graph data to Japan
+// function changeToJapan() {
+  
+//   // Add data if it doesn't exist yet
+//   if(!u_japanEnabled) {
+//     //JAPANESE DATA
+//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK",
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to USA
-function changeToUSA() {
-  // Add data if it doesn't exist yet
-  if(!u_USAEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
+//       function(d) {
+//         return {
+//           date: d3.timeParse("%Y-%m-%d")(d.date),
+//           value: d.value
+//         }
+//       },
 
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
+//       function(data) {
+//         var newx = overX;
+//         var newy = overY;    
 
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
+//         svg.append("path")
+//           .datum(data)
+//           .attr("fill", "none")
+//           .attr("id", "japan-data")
+//           .attr("stroke", "url(#line-gradient)")
+//           .attr("stroke-width", 2)
+//           .attr("d", d3.line()
+//                 .x(function(d) {return newx(d.date) })
+//                 .y(function(d) {return newy(d.value)})
+//                 ) 
+//       }) 
+//     } // end if
 
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "usa-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
+//     else {
+//       d3.select("#japan-data").remove();
+//     }
 
-    else {
-      d3.select("#usa-data").remove();
-    }
+//     u_japanEnabled = !u_japanEnabled;
+// }
 
-    u_USAEnabled = !u_USAEnabled;
-}
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// // Change graph data to USA
+// function changeToUSA() {
+//   // Add data if it doesn't exist yet
+//   if(!u_USAEnabled) {
+//     //JAPANESE DATA
+//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to France
-function changeToFrance() {
-  // Add data if it doesn't exist yet
-  if(!u_franceEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K",
+//       function(d) {
+//         return {
+//           date: d3.timeParse("%Y-%m-%d")(d.date),
+//           value: d.value
+//         }
+//       },
 
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
+//       function(data) {
+//         var newx = overX;
+//         var newy = overY;    
 
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
+//         svg.append("path")
+//           .datum(data)
+//           .attr("fill", "none")
+//           .attr("id", "usa-data")
+//           .attr("stroke", "url(#line-gradient)")
+//           .attr("stroke-width", 2)
+//           .attr("d", d3.line()
+//                 .x(function(d) {return newx(d.date) })
+//                 .y(function(d) {return newy(d.value)})
+//                 ) 
+//       }) 
+//     } // end if
 
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "france-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
+//     else {
+//       d3.select("#usa-data").remove();
+//     }
 
-    else {
-      d3.select("#france-data").remove();
-    }
+//     u_USAEnabled = !u_USAEnabled;
+// }
 
-    u_franceEnabled = !u_franceEnabled;
-}
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// // Change graph data to France
+// function changeToFrance() {
+//   // Add data if it doesn't exist yet
+//   if(!u_franceEnabled) {
+//     //JAPANESE DATA
+//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K",
 
+//       function(d) {
+//         return {
+//           date: d3.timeParse("%Y-%m-%d")(d.date),
+//           value: d.value
+//         }
+//       },
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to Germany
-function changeToGermany() {
-  // Add data if it doesn't exist yet
-  if(!u_germanyEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE",
+//       function(data) {
+//         var newx = overX;
+//         var newy = overY;    
 
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
+//         svg.append("path")
+//           .datum(data)
+//           .attr("fill", "none")
+//           .attr("id", "france-data")
+//           .attr("stroke", "url(#line-gradient)")
+//           .attr("stroke-width", 2)
+//           .attr("d", d3.line()
+//                 .x(function(d) {return newx(d.date) })
+//                 .y(function(d) {return newy(d.value)})
+//                 ) 
+//       }) 
+//     } // end if
 
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
+//     else {
+//       d3.select("#france-data").remove();
+//     }
 
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "germany-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
-
-    else {
-      d3.select("#germany-data").remove();
-    }
-
-    u_germanyEnabled = !u_germanyEnabled;
-}
+//     u_franceEnabled = !u_franceEnabled;
+// }
 
 
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to United Kingdom
-function changeToUnitedKingdom() {
-  // Add data if it doesn't exist yet
-  if(!u_unitedkingdomEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ",
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// // Change graph data to Germany
+// function changeToGermany() {
+//   // Add data if it doesn't exist yet
+//   if(!u_germanyEnabled) {
+//     //JAPANESE DATA
+//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE",
 
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
+//       function(d) {
+//         return {
+//           date: d3.timeParse("%Y-%m-%d")(d.date),
+//           value: d.value
+//         }
+//       },
 
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
+//       function(data) {
+//         var newx = overX;
+//         var newy = overY;    
 
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "unitedkingdom-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
+//         svg.append("path")
+//           .datum(data)
+//           .attr("fill", "none")
+//           .attr("id", "germany-data")
+//           .attr("stroke", "url(#line-gradient)")
+//           .attr("stroke-width", 2)
+//           .attr("d", d3.line()
+//                 .x(function(d) {return newx(d.date) })
+//                 .y(function(d) {return newy(d.value)})
+//                 ) 
+//       }) 
+//     } // end if
 
-    else {
-      d3.select("#unitedkingdom-data").remove();
-    }
+//     else {
+//       d3.select("#germany-data").remove();
+//     }
 
-    u_unitedkingdomEnabled = !u_unitedkingdomEnabled;
-}
+//     u_germanyEnabled = !u_germanyEnabled;
+// }
+
+
+// ///////////////////////////////////////////////
+// ///////////////////////////////////////////////
+// // Change graph data to United Kingdom
+// function changeToUnitedKingdom() {
+//   // Add data if it doesn't exist yet
+//   if(!u_unitedkingdomEnabled) {
+//     //JAPANESE DATA
+//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ",
+
+//       function(d) {
+//         return {
+//           date: d3.timeParse("%Y-%m-%d")(d.date),
+//           value: d.value
+//         }
+//       },
+
+//       function(data) {
+//         var newx = overX;
+//         var newy = overY;    
+
+//         svg.append("path")
+//           .datum(data)
+//           .attr("fill", "none")
+//           .attr("id", "unitedkingdom-data")
+//           .attr("stroke", "url(#line-gradient)")
+//           .attr("stroke-width", 2)
+//           .attr("d", d3.line()
+//                 .x(function(d) {return newx(d.date) })
+//                 .y(function(d) {return newy(d.value)})
+//                 ) 
+//       }) 
+//     } // end if
+
+//     else {
+//       d3.select("#unitedkingdom-data").remove();
+//     }
+
+//     u_unitedkingdomEnabled = !u_unitedkingdomEnabled;
+// }
 
 
 
