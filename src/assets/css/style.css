@@ -291,3 +291,38 @@ label {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+/* up arrow triangle */
+.triangle-top {
+  /* width: 0;
+  height: 0;
+  margin: 30px auto;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-bottom: 30px solid black;
+  display: inline-block; */
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+  width: 60px;
+  height: 30px;
+  border-bottom: solid 30px red;
+  border-left: solid 30px transparent;
+  border-right: solid 30px transparent;
+
+}
+
+.triangle-bottom {
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+  width: 60px;
+  height: 30px;
+  border-top: solid 30px green;
+  border-left: solid 30px transparent;
+  border-right: solid 30px transparent;
+}
+
+.red-text {
+    color: red;
+}

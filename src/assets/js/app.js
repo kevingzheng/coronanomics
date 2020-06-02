@@ -59,6 +59,21 @@ let u_clicked =
 const countryIds = ["usa", "japan", "france", "germany", "unitedkingdom"];
 
 
+// objects that represent a country and their corresponding info
+let u_info = {
+  default : "Click on a line in the graph to learn more about the country's labor statistics.",
+  usa : "<h1 class = 'paragraph-size'>US Unemployment Information (<span class = 'triangle-top'></span>" + 
+  "<span class = 'red-text'>+10%</span> from 2019)</h1>",
+  japan : "japan unemployment info",
+  germany : "germany unemployment info",
+  unitedkingdom : "unitedkingdom unemployment info",
+  france : "france unemployment info",
+
+}
+
+let currentText = "default";
+
+
 // Data variables
 
 
@@ -179,11 +194,13 @@ function loadUSA() {
             d3.select(this)
               .attr("stroke", "red")
             u_clicked["usa"] = true;
+            switchText("usa");
           } // end if
           else {
             d3.select(this)
             .attr("stroke", "url(#line-gradient)")
             u_clicked["usa"] = false;
+            switchText("default");
           } // end else
         })
   }) 
@@ -233,11 +250,13 @@ function changeTo(country, csv, enabled, clickedval) {
               d3.select(this)
               .attr("stroke", "red")
               u_clicked[clickedval] = true;
+              switchText(clickedval);
             } // end if
             else {
               d3.select(this)
               .attr("stroke", "url(#line-gradient)")
               u_clicked[clickedval] = false;
+              switchText("default");
             }
           })
       }) 
@@ -246,21 +265,32 @@ function changeTo(country, csv, enabled, clickedval) {
     else {
       u_clicked[clickedval] = false;
       d3.select("#" + country).remove();
+      if (currentText === clickedval) {
+        switchText("default");
+
+      }
     }
 
     enabled["val"] = !enabled["val"];
 } // end changeTo
 
 
-
+// unclicks all other currently selected paths
 function unclickAllOthers() {
   for(let i = 0; i < countryIds.length; i++) {
-     if(u_clicked[countryIds[i]] == true) {
+     if(u_clicked[countryIds[i]] === true) {
         d3.select("#" + countryIds[i] + "-data")
           .attr("stroke", "url(#line-gradient");
         u_clicked[countryIds[i]] = false;
      }
   } // end for i
 } // end unclickAllOthers
+
+// shows information for a country when the path is clicked
+function switchText(country) {
+  currentText = country;
+  document.getElementById('unemployment-paragraph').innerHTML = u_info[country];
+
+}
 
 
