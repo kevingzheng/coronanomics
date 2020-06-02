@@ -47,6 +47,17 @@ let u_unitedkingdomEnabled = {
   "val": false
 };
 
+let u_clicked = 
+{
+  usa: false,
+  japan: false,
+  unitedkingdom: false,
+  germany: false,
+  france: false
+}
+
+const countryIds = ["usa", "japan", "france", "germany", "unitedkingdom"];
+
 
 // Data variables
 
@@ -150,10 +161,35 @@ function loadUSA() {
               .x(function(d) {return x(d.date) })
               .y(function(d) {return y(d.value)})
               ) 
+        .on("mouseover", function() {
+              if(!u_clicked["usa"]) {
+                d3.select(this)
+                  .attr("stroke", "red")
+              }
+            })
+        .on("mouseout", function() {
+            if(!u_clicked["usa"]) {
+              d3.select(this)
+                .attr("stroke", "url(#line-gradient)")
+            } // end if
+          })
+        .on("click", function() {
+          if(!u_clicked["usa"]) {
+            unclickAllOthers();
+            d3.select(this)
+              .attr("stroke", "red")
+            u_clicked["usa"] = true;
+          } // end if
+          else {
+            d3.select(this)
+            .attr("stroke", "url(#line-gradient)")
+            u_clicked["usa"] = false;
+          } // end else
+        })
   }) 
 }
 
-function changeTo(country, csv, enabled) {
+function changeTo(country, csv, enabled, clickedval) {
   // Add data if it doesn't exist yet
   if(!enabled["val"]) {
     d3.csv(csv,
@@ -179,217 +215,52 @@ function changeTo(country, csv, enabled) {
                 .x(function(d) {return newx(d.date) })
                 .y(function(d) {return newy(d.value)})
                 ) 
+          .on("mouseover", function() {
+              if(!u_clicked[clickedval]) {
+                d3.select(this)
+                  .attr("stroke", "red")
+              } // end if
+            })
+          .on("mouseout", function() {
+              if(!u_clicked[clickedval]) {
+                d3.select(this)
+                  .attr("stroke", "url(#line-gradient)")
+              }
+            }) // end if
+          .on("click", function() {
+            if(!u_clicked[clickedval]) {
+              unclickAllOthers();
+              d3.select(this)
+              .attr("stroke", "red")
+              u_clicked[clickedval] = true;
+            } // end if
+            else {
+              d3.select(this)
+              .attr("stroke", "url(#line-gradient)")
+              u_clicked[clickedval] = false;
+            }
+          })
       }) 
     } // end if
 
     else {
+      u_clicked[clickedval] = false;
       d3.select("#" + country).remove();
     }
 
     enabled["val"] = !enabled["val"];
 } // end changeTo
-// ///////////////////////////////////////////////
-// ///////////////////////////////////////////////
-// // Change graph data to Japan
-// function changeToJapan() {
-  
-//   // Add data if it doesn't exist yet
-//   if(!u_japanEnabled) {
-//     //JAPANESE DATA
-//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK",
-
-//       function(d) {
-//         return {
-//           date: d3.timeParse("%Y-%m-%d")(d.date),
-//           value: d.value
-//         }
-//       },
-
-//       function(data) {
-//         var newx = overX;
-//         var newy = overY;    
-
-//         svg.append("path")
-//           .datum(data)
-//           .attr("fill", "none")
-//           .attr("id", "japan-data")
-//           .attr("stroke", "url(#line-gradient)")
-//           .attr("stroke-width", 2)
-//           .attr("d", d3.line()
-//                 .x(function(d) {return newx(d.date) })
-//                 .y(function(d) {return newy(d.value)})
-//                 ) 
-//       }) 
-//     } // end if
-
-//     else {
-//       d3.select("#japan-data").remove();
-//     }
-
-//     u_japanEnabled = !u_japanEnabled;
-// }
-
-// ///////////////////////////////////////////////
-// ///////////////////////////////////////////////
-// // Change graph data to USA
-// function changeToUSA() {
-//   // Add data if it doesn't exist yet
-//   if(!u_USAEnabled) {
-//     //JAPANESE DATA
-//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
-
-//       function(d) {
-//         return {
-//           date: d3.timeParse("%Y-%m-%d")(d.date),
-//           value: d.value
-//         }
-//       },
-
-//       function(data) {
-//         var newx = overX;
-//         var newy = overY;    
-
-//         svg.append("path")
-//           .datum(data)
-//           .attr("fill", "none")
-//           .attr("id", "usa-data")
-//           .attr("stroke", "url(#line-gradient)")
-//           .attr("stroke-width", 2)
-//           .attr("d", d3.line()
-//                 .x(function(d) {return newx(d.date) })
-//                 .y(function(d) {return newy(d.value)})
-//                 ) 
-//       }) 
-//     } // end if
-
-//     else {
-//       d3.select("#usa-data").remove();
-//     }
-
-//     u_USAEnabled = !u_USAEnabled;
-// }
-
-// ///////////////////////////////////////////////
-// ///////////////////////////////////////////////
-// // Change graph data to France
-// function changeToFrance() {
-//   // Add data if it doesn't exist yet
-//   if(!u_franceEnabled) {
-//     //JAPANESE DATA
-//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K",
-
-//       function(d) {
-//         return {
-//           date: d3.timeParse("%Y-%m-%d")(d.date),
-//           value: d.value
-//         }
-//       },
-
-//       function(data) {
-//         var newx = overX;
-//         var newy = overY;    
-
-//         svg.append("path")
-//           .datum(data)
-//           .attr("fill", "none")
-//           .attr("id", "france-data")
-//           .attr("stroke", "url(#line-gradient)")
-//           .attr("stroke-width", 2)
-//           .attr("d", d3.line()
-//                 .x(function(d) {return newx(d.date) })
-//                 .y(function(d) {return newy(d.value)})
-//                 ) 
-//       }) 
-//     } // end if
-
-//     else {
-//       d3.select("#france-data").remove();
-//     }
-
-//     u_franceEnabled = !u_franceEnabled;
-// }
 
 
-// ///////////////////////////////////////////////
-// ///////////////////////////////////////////////
-// // Change graph data to Germany
-// function changeToGermany() {
-//   // Add data if it doesn't exist yet
-//   if(!u_germanyEnabled) {
-//     //JAPANESE DATA
-//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE",
 
-//       function(d) {
-//         return {
-//           date: d3.timeParse("%Y-%m-%d")(d.date),
-//           value: d.value
-//         }
-//       },
-
-//       function(data) {
-//         var newx = overX;
-//         var newy = overY;    
-
-//         svg.append("path")
-//           .datum(data)
-//           .attr("fill", "none")
-//           .attr("id", "germany-data")
-//           .attr("stroke", "url(#line-gradient)")
-//           .attr("stroke-width", 2)
-//           .attr("d", d3.line()
-//                 .x(function(d) {return newx(d.date) })
-//                 .y(function(d) {return newy(d.value)})
-//                 ) 
-//       }) 
-//     } // end if
-
-//     else {
-//       d3.select("#germany-data").remove();
-//     }
-
-//     u_germanyEnabled = !u_germanyEnabled;
-// }
-
-
-// ///////////////////////////////////////////////
-// ///////////////////////////////////////////////
-// // Change graph data to United Kingdom
-// function changeToUnitedKingdom() {
-//   // Add data if it doesn't exist yet
-//   if(!u_unitedkingdomEnabled) {
-//     //JAPANESE DATA
-//     d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ",
-
-//       function(d) {
-//         return {
-//           date: d3.timeParse("%Y-%m-%d")(d.date),
-//           value: d.value
-//         }
-//       },
-
-//       function(data) {
-//         var newx = overX;
-//         var newy = overY;    
-
-//         svg.append("path")
-//           .datum(data)
-//           .attr("fill", "none")
-//           .attr("id", "unitedkingdom-data")
-//           .attr("stroke", "url(#line-gradient)")
-//           .attr("stroke-width", 2)
-//           .attr("d", d3.line()
-//                 .x(function(d) {return newx(d.date) })
-//                 .y(function(d) {return newy(d.value)})
-//                 ) 
-//       }) 
-//     } // end if
-
-//     else {
-//       d3.select("#unitedkingdom-data").remove();
-//     }
-
-//     u_unitedkingdomEnabled = !u_unitedkingdomEnabled;
-// }
-
+function unclickAllOthers() {
+  for(let i = 0; i < countryIds.length; i++) {
+     if(u_clicked[countryIds[i]] == true) {
+        d3.select("#" + countryIds[i] + "-data")
+          .attr("stroke", "url(#line-gradient");
+        u_clicked[countryIds[i]] = false;
+     }
+  } // end for i
+} // end unclickAllOthers
 
 
