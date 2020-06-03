@@ -202,6 +202,12 @@ th {
 
 }
 
+.unemployment-paragraph {
+    text-align: left;
+    font-size: 20px;
+    margin-left: 5%;
+}
+
 .line{
     fill:none;
     stroke:black;

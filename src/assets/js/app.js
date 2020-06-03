@@ -62,12 +62,46 @@ const countryIds = ["usa", "japan", "france", "germany", "unitedkingdom"];
 // objects that represent a country and their corresponding info
 let u_info = {
   default : "Click on a line in the graph to learn more about the country's labor statistics.",
+
+
+
   usa : "<h1 class = 'paragraph-size'>US Unemployment Information (<span class = 'triangle-top'></span>" + 
   "<span class = 'red-text'>+10%</span> from 2019)</h1>",
-  japan : "japan unemployment info",
+
+
+
+
+  japan : "<h1 class = 'paragraph-size'>Japan (<span class = 'triangle-top'></span>" + 
+  "<span class = 'red-text'>+0.1%</span> from April 2020)</h1>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Emerging from the Lost Decade of the 1990s-2000s and the Great Recession of 2008, Japan's economy" +
+  " stabilized around an annual GDP growth rate of about 1.5% in the 2010s. Due to the Abe administration's" +
+  " policy of subsidizing employers, many Japanese have been able to nominally retain their jobs" +
+  ", and Japan's unemployment rate is still one of the lowest in the world. Yet, unemployment in Japan" +
+  " climbed to 2.6% by May, the highest figure since late 2017, and Japan's GDP is also" +
+  " <a href = 'https://www.statista.com/statistics/263607/gross-domestic-product-gdp-growth-rate-in-japan/'>projected</a> to shrink" +
+  " by a colossal 5.2% this year, as many workers in Japan hold jobs in name only. It remains to be seen if" +
+  " the coronavirus will derail Japan's economic recovery." +
+  "</p>",
+
+
+
+
   germany : "germany unemployment info",
+
+
+
+
   unitedkingdom : "unitedkingdom unemployment info",
+
+
+
+
   france : "france unemployment info",
+
+
+
+
 
 }
 
@@ -82,7 +116,7 @@ let overY = 0;
 let overMax = 0;
 // ONLOAD actions
 ////////////////////////////////
-let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2";
+let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHJYANYV7CR4B3ZXDG264FP5U";
 let japancsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK";
 let francecsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K";
 let germanycsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE";
@@ -103,7 +137,7 @@ var svg = d3.select("#unemployment-graph")
 ////////////////////////////////
 // Load USA unemployment data (csv, default data)
 function loadUSA() {
-  d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
+  d3.csv(usacsv,
 
     function(d) {
       return {
