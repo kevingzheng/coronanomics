@@ -134,6 +134,8 @@ h2 {
 .paragraph-size {
     font-size: 35px;
     text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .section-title {
@@ -205,7 +207,7 @@ th {
 .unemployment-paragraph {
     text-align: left;
     font-size: 20px;
-    margin-left: 5%;
+
 }
 
 .line{
@@ -300,35 +302,83 @@ label {
 
 /* up arrow triangle */
 .triangle-top {
-  /* width: 0;
-  height: 0;
-  margin: 30px auto;
-  border-left: 18px solid transparent;
-  border-right: 18px solid transparent;
-  border-bottom: 30px solid black;
-  display: inline-block; */
   display: inline-block;
-  margin: 0 5px;
-  vertical-align: middle;
-  width: 60px;
-  height: 30px;
-  border-bottom: solid 30px red;
-  border-left: solid 30px transparent;
-  border-right: solid 30px transparent;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 25px 15px;
+  border-color: transparent transparent red transparent;
 
 }
 
 .triangle-bottom {
   display: inline-block;
-  margin: 0 5px;
-  vertical-align: middle;
-  width: 60px;
-  height: 30px;
-  border-top: solid 30px green;
-  border-left: solid 30px transparent;
-  border-right: solid 30px transparent;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 15px 0 15px;
+  border-color: green transparent transparent transparent;
 }
+
+.triangle-top-small-green {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent green transparent;
+  
+  }
+
+  .triangle-top-small-red {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent red transparent;
+  
+  }
+
+.triangle-bottom-small-green {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent green transparent;
+  }
+
+  .triangle-bottom-small-red {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 7.5px 0 7.5px;
+    border-color: red transparent transparent transparent;
+  }
+
 
 .red-text {
     color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.h-line {
+    border-width: 1px;
+    border-color: black;
+    position: relative;
+    top: 5px;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.linkcolor a:visited{
+    color:blue;
 }
