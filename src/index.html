@@ -2,13 +2,17 @@
 <html>
 <head>
 	<title>Coronanomics</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://d3js.org/d3.v4.js"></script>
+	
 </head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./assets/css/style.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://d3js.org/d3.v4.js"></script>
+
+
 <!-- Import more fonts, etc. here -->
 
 <body onload="loadUSA()">
@@ -17,7 +21,17 @@
 	<div class="earth-background title-font">
 		<header>
 			<section class="large-font">
-				<h2>CORONANOMICS</h2>
+
+				<div class='container'>
+					<div class='row'>
+						<div class='col-lg-12'>
+							<h2 class='title-style'>CORONANOMICS</h2>
+						</div>
+					</div>
+				</div>
+
+
+	
 				<h3 class="sub-style">VISUALIZING THE ECONOMIC DAMAGE OF COVID-19</h3>
 			</section>
 		</header>
@@ -25,14 +39,32 @@
 		<div class ="getstarted">
 			<a href="#navtabs">Get Started</a>
 		</div>
-	
-		<nav id="navtabs">
+
+		<div id = navtabs class = 'container navbar'>
+			<div class = 'row text-center'>
+				<div class = 'col-lg-3'>
+					<a class='nav-a nowrap' href="#InfectionData">Infection Data</a>
+				</div>
+				<div class = 'col-lg-3'>
+					<a class = 'nav-a nowrap' href="#StockPrices">Stock Prices</a>
+				</div>
+				<div class = 'col-lg-3'>
+					<a class = 'nav-a nowrap' href="#LaborStatistics">Labor Statistics</a>
+				</div>
+				<div class = 'col-lg-3'>
+					<a class = 'nav-a nowrap' href="#Inflation">Inflation</a>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- <nav id="navtabs"> -->
 			<!-- Add tabs here -->
-			<a href="#InfectionData">Infection Data</a>
+			<!-- <a href="#InfectionData">Infection Data</a>
 			<a href="#StockPrices">Stock Prices</a>
 			<a href="#LaborStatistics">Labor Statistics</a>
 			<a href="#Inflation">Inflation</a>
-		</nav>
+		</nav> -->
 	</div>
 
 	<!-- Site overview -->
@@ -95,34 +127,45 @@
 		<!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
 
 		<form>
-			<label class="container">USA
-				<input type="checkbox" checked="checked" onclick="changeToUSA()">
+			<label class="container1">USA
+				<input type="checkbox" checked = "checked" onclick='changeTo("usa-data", usacsv, u_USAEnabled, "usa")'>
 				<span class="checkmark"></span>
 			</label>
-			<label class="container">Japan
-				<input type="checkbox" onclick ="changeToJapan()">
+			<label class="container1">Japan
+				<input type="checkbox" onclick ='changeTo("japan-data", japancsv, u_japanEnabled, "japan")'>
 				<span class="checkmark"></span>
 			</label>
-			<label class="container">France
-				<input type="checkbox" onclick="changeToFrance()">
+			<label class="container1">France
+				<input type="checkbox" onclick='changeTo("france-data", francecsv, u_franceEnabled, "france")'>
 				<span class="checkmark"></span>
 			</label>
-			<label class="container">Germany
-				<input type="checkbox" onclick="changeToGermany()">
+			<label class="container1">Germany
+				<input type="checkbox" onclick='changeTo("germany-data", germanycsv, u_germanyEnabled, "germany")'>
 				<span class="checkmark"></span>
 			</label>
-			<label class="container">United Kingdom
-				<input type="checkbox" onclick="changeToUnitedKingdom()">
+			<label class="container1">United Kingdom
+				<input type="checkbox" onclick='changeTo("unitedkingdom-data", unitedkingdomcsv, u_unitedkingdomEnabled, "unitedkingdom")'>
 				<span class="checkmark"></span>
 			</label>
 		</form>
 
 	<!-- D3 graph for unemployment data -->
-	<div id = "unemployment-graph" class = title-font></div>
+		<div id = "unemployment-graph" class = title-font>
+
+		</div>
+
+	<!-- paragraph description for labor statistics -->
+		<p id = 'unemployment-paragraph' class = 'title-font paragraph-size' >
+			Click on a line in the graph to learn more about the country's labor statistics.
+		</p>
 
 	</div>
 
+	
+	
+
 	<script src="./assets/js/app.js"></script>
+
 
 </body>
 </html>

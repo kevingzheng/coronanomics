@@ -31,17 +31,133 @@ var height = 400 - margin.top - margin.bottom;
 
 // STATE variables for D3 unemployment graphs
 // u_$(country)Enabled indicates unemployment graph
-let u_japanEnabled = false;
-let u_USAEnabled = true;
-let u_franceEnabled = false;
-let u_germanyEnabled = false;
-let u_unitedkingdomEnabled = false; 
+let u_japanEnabled = {
+  "val" : false
+};
+let u_USAEnabled = {
+  "val" : true
+};
+let u_franceEnabled = {
+  "val": false
+};
+let u_germanyEnabled = {
+  "val": false
+};
+let u_unitedkingdomEnabled = {
+  "val": false
+};
+
+let u_clicked = 
+{
+  usa: false,
+  japan: false,
+  unitedkingdom: false,
+  germany: false,
+  france: false
+}
+
+const countryIds = ["usa", "japan", "france", "germany", "unitedkingdom"];
+
+
+// objects that represent a country and their corresponding info
+let u_info = {
+  default : "Click on a line in the graph to learn more about the country's labor statistics.",
+
+
+
+  usa : "<h1 class = 'paragraph-size'>US Unemployment Information (<span class = 'triangle-top'></span>" + 
+  "<span class = 'red-text'>+10%</span> from 2019)</h1>" +
+  "<hr class = 'h-line'>" + "<br>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?"+
+  "</p>",
+
+
+
+
+  japan : "<h1 class = 'paragraph-size'>Japan (<span class = 'triangle-top'></span>" + 
+  "<span class = 'red-text'>+0.1%</span> from April 2020)</h1>" +
+  "<hr class = 'h-line'>" + "<br>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Emerging from the Lost Decade of the 1990s-2000s and the Great Recession of 2008, Japan's economy" +
+  " stabilized around an annual GDP growth rate of about <span class = 'triangle-top-small-green'></span><span class = 'green-text'>1.5%</span> in the 2010s. Due to the Abe administration's" +
+  " policy of subsidizing employers, many Japanese have been able to nominally retain their jobs" +
+  ", and Japan's unemployment rate is still one of the lowest in the world. Yet, unemployment in Japan" +
+  " climbed to <span class = 'triangle-top-small-red'></span><span class = 'red-text'>2.6%</span> by May, the highest figure since late 2017, and Japan's GDP is also" +
+  " <span class='linkcolor'><a href = 'https://www.statista.com/statistics/263607/gross-domestic-product-gdp-growth-rate-in-japan/' target='_blank' rel='noopener noreferrer'>projected</a></span> to shrink" +
+  " by a colossal <span class = 'triangle-bottom-small-red'></span><span class = 'red-text'>5.2%</span> this year, as many workers in Japan hold jobs in name only. It remains to be seen if" +
+  " the coronavirus will derail Japan's economic recovery." +
+  "</p>",
+
+
+
+
+  germany :  "<h1 class = 'paragraph-size'>Germany (<span class = 'triangle-bottom'></span>" + 
+  "<span class = 'green-text'>+0.1%</span> from April 2020)</h1>" +
+  "<hr class = 'h-line'>" + "<br>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?"+
+  "</p>",
+
+
+
+
+  unitedkingdom : "<h1 class = 'paragraph-size'>United Kingdom (<span class = 'triangle-bottom'></span>" + 
+  "<span class = 'green-text'>+0.1%</span> from April 2020)</h1>" +
+  "<hr class = 'h-line'>" + "<br>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?"+
+  "</p>",
+
+
+
+
+  france : "<h1 class = 'paragraph-size'>France (<span class = 'triangle-bottom'></span>" + 
+  "<span class = 'green-text'>+0.1%</span> from April 2020)</h1>" +
+  "<hr class = 'h-line'>" + "<br>" +
+  "<p class = 'unemployment-paragraph'>" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
+  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
+  "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?"+
+  "</p>",
+
+}
+
+let currentText = "default";
+
+
+// Data variables
+
 
 let overX = 0;
 let overY = 0;
 let overMax = 0;
 // ONLOAD actions
 ////////////////////////////////
+let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHJYANYV7CR4B3ZXDG264FP5U";
+let japancsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK";
+let francecsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K";
+let germanycsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE";
+let unitedkingdomcsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ";
+
 
 ////////////////////////////////
 ////////////////////////////////
@@ -57,7 +173,7 @@ var svg = d3.select("#unemployment-graph")
 ////////////////////////////////
 // Load USA unemployment data (csv, default data)
 function loadUSA() {
-  d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
+  d3.csv(usacsv,
 
     function(d) {
       return {
@@ -130,16 +246,40 @@ function loadUSA() {
               .x(function(d) {return x(d.date) })
               .y(function(d) {return y(d.value)})
               ) 
+        .on("mouseover", function() {
+              if(!u_clicked["usa"]) {
+                d3.select(this)
+                  .attr("stroke", "red")
+              }
+            })
+        .on("mouseout", function() {
+            if(!u_clicked["usa"]) {
+              d3.select(this)
+                .attr("stroke", "url(#line-gradient)")
+            } // end if
+          })
+        .on("click", function() {
+          if(!u_clicked["usa"]) {
+            unclickAllOthers();
+            d3.select(this)
+              .attr("stroke", "red")
+            u_clicked["usa"] = true;
+            switchText("usa");
+          } // end if
+          else {
+            d3.select(this)
+            .attr("stroke", "url(#line-gradient)")
+            u_clicked["usa"] = false;
+            switchText("default");
+          } // end else
+        })
   }) 
 }
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to Japan
-function changeToJapan() {
+
+function changeTo(country, csv, enabled, clickedval) {
   // Add data if it doesn't exist yet
-  if(!u_japanEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/japan.csv?token=ALJ6WHN4HCRS7TKEKG5XPZK63GLWK",
+  if(!enabled["val"]) {
+    d3.csv(csv,
 
       function(d) {
         return {
@@ -155,184 +295,72 @@ function changeToJapan() {
         svg.append("path")
           .datum(data)
           .attr("fill", "none")
-          .attr("id", "japan-data")
+          .attr("id", country)
           .attr("stroke", "url(#line-gradient)")
           .attr("stroke-width", 2)
           .attr("d", d3.line()
                 .x(function(d) {return newx(d.date) })
                 .y(function(d) {return newy(d.value)})
                 ) 
+          .on("mouseover", function() {
+              if(!u_clicked[clickedval]) {
+                d3.select(this)
+                  .attr("stroke", "red")
+              } // end if
+            })
+          .on("mouseout", function() {
+              if(!u_clicked[clickedval]) {
+                d3.select(this)
+                  .attr("stroke", "url(#line-gradient)")
+              }
+            }) // end if
+          .on("click", function() {
+            if(!u_clicked[clickedval]) {
+              unclickAllOthers();
+              d3.select(this)
+              .attr("stroke", "red")
+              u_clicked[clickedval] = true;
+              switchText(clickedval);
+            } // end if
+            else {
+              d3.select(this)
+              .attr("stroke", "url(#line-gradient)")
+              u_clicked[clickedval] = false;
+              switchText("default");
+            }
+          })
       }) 
     } // end if
 
     else {
-      d3.select("#japan-data").remove();
+      u_clicked[clickedval] = false;
+      d3.select("#" + country).remove();
+      if (currentText === clickedval) {
+        switchText("default");
+
+      }
     }
 
-    u_japanEnabled = !u_japanEnabled;
+    enabled["val"] = !enabled["val"];
+} // end changeTo
+
+
+// unclicks all other currently selected paths
+function unclickAllOthers() {
+  for(let i = 0; i < countryIds.length; i++) {
+     if(u_clicked[countryIds[i]] === true) {
+        d3.select("#" + countryIds[i] + "-data")
+          .attr("stroke", "url(#line-gradient");
+        u_clicked[countryIds[i]] = false;
+     }
+  } // end for i
+} // end unclickAllOthers
+
+// shows information for a country when the path is clicked
+function switchText(country) {
+  currentText = country;
+  document.getElementById('unemployment-paragraph').innerHTML = u_info[country];
+
 }
-
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to USA
-function changeToUSA() {
-  // Add data if it doesn't exist yet
-  if(!u_USAEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv?token=ALJ6WHKLK4NAO4JFSVLKKIS63AOE2",
-
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
-
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
-
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "usa-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
-
-    else {
-      d3.select("#usa-data").remove();
-    }
-
-    u_USAEnabled = !u_USAEnabled;
-}
-
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to France
-function changeToFrance() {
-  // Add data if it doesn't exist yet
-  if(!u_franceEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/france.csv?token=ALJ6WHK2NHJMUS77I5KM2DS63GU2K",
-
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
-
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
-
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "france-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
-
-    else {
-      d3.select("#france-data").remove();
-    }
-
-    u_franceEnabled = !u_franceEnabled;
-}
-
-
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to Germany
-function changeToGermany() {
-  // Add data if it doesn't exist yet
-  if(!u_germanyEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/germany.csv?token=ALJ6WHOQJZC6NCJCZIUVTE263GWEE",
-
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
-
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
-
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "germany-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
-
-    else {
-      d3.select("#germany-data").remove();
-    }
-
-    u_germanyEnabled = !u_germanyEnabled;
-}
-
-
-///////////////////////////////////////////////
-///////////////////////////////////////////////
-// Change graph data to United Kingdom
-function changeToUnitedKingdom() {
-  // Add data if it doesn't exist yet
-  if(!u_unitedkingdomEnabled) {
-    //JAPANESE DATA
-    d3.csv("https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv?token=ALJ6WHIYEACX5IX24VP5TX263GWSQ",
-
-      function(d) {
-        return {
-          date: d3.timeParse("%Y-%m-%d")(d.date),
-          value: d.value
-        }
-      },
-
-      function(data) {
-        var newx = overX;
-        var newy = overY;    
-
-        svg.append("path")
-          .datum(data)
-          .attr("fill", "none")
-          .attr("id", "unitedkingdom-data")
-          .attr("stroke", "url(#line-gradient)")
-          .attr("stroke-width", 2)
-          .attr("d", d3.line()
-                .x(function(d) {return newx(d.date) })
-                .y(function(d) {return newy(d.value)})
-                ) 
-      }) 
-    } // end if
-
-    else {
-      d3.select("#unitedkingdom-data").remove();
-    }
-
-    u_unitedkingdomEnabled = !u_unitedkingdomEnabled;
-}
-
 
 

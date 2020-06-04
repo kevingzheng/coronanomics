@@ -7,38 +7,50 @@
     font-family: 'Poppins', serif;
 }
 
+.title-style {
+    word-wrap: break-word;
+}
+
 .earth-background {
     color: #D7263D;
     background-image: url("./../img/earth2.jpg");
     padding: 100px;
     font-size: 30px;
-    height: 800px;
+    height: 1000px;
     text-align: center;
 }
 
-nav {
-    padding: 40px 0px;
+.navbar {
+    position: relative;
+    top: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.nowrap {
+    /* padding: 40px 0px; */
     display: inline-block;
     white-space: nowrap;
-    position: relative;
+    /* position: relative;
     text-align: center;
     width: 100%;
-    top: 400px;
+    top: 400px; */
     
 }
 
-nav a {
+
+.nav-a {
     background: #D7263D;
     border: 1px solid #D7263D;
     border-radius: 3px;
     color: #FFF;
     display: inline-block;
-    margin: 10px 10px;
+    margin: 5px;
     padding: 14px;
     text-decoration: none;
 }
 
-nav a:hover {
+.nav-a:hover {
     background: #FFF;
     border: 1px solid #D7263D;
     color: #D7263D;
@@ -122,6 +134,8 @@ h2 {
 .paragraph-size {
     font-size: 35px;
     text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .section-title {
@@ -190,6 +204,12 @@ th {
 
 }
 
+.unemployment-paragraph {
+    text-align: left;
+    font-size: 20px;
+
+}
+
 .line{
     fill:none;
     stroke:black;
@@ -210,7 +230,7 @@ label {
 }
 
 
-.container {
+.container1 {
   display: block;
   position: relative;
   top: 800px;
@@ -226,12 +246,13 @@ label {
 }
 
 /* Hide the browser's default checkbox */
-.container input {
+.container1 input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
   height: 0;
   width: 0;
+
 }
 
 /* Create a custom checkbox */
@@ -245,12 +266,12 @@ label {
 }
 
 /* On mouse-over, add a grey background color */
-.container:hover input ~ .checkmark {
+.container1:hover input ~ .checkmark {
   background-color: #ccc;
 }
 
 /* When the checkbox is checked, add a blue background */
-.container input:checked ~ .checkmark {
+.container1 input:checked ~ .checkmark {
   background-color: #D3D3D3;
 }
 
@@ -262,12 +283,12 @@ label {
 }
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.container1 input:checked ~ .checkmark:after {
   display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.container1 .checkmark:after {
   left: 9px;
   top: 5px;
   width: 5px;
@@ -277,4 +298,87 @@ label {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* up arrow triangle */
+.triangle-top {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 15px 25px 15px;
+  border-color: transparent transparent red transparent;
+
+}
+
+.triangle-bottom {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 30px 15px 0 15px;
+  border-color: green transparent transparent transparent;
+}
+
+.triangle-top-small-green {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent green transparent;
+  
+  }
+
+  .triangle-top-small-red {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent red transparent;
+  
+  }
+
+.triangle-bottom-small-green {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5px 15px 7.5px;
+    border-color: transparent transparent green transparent;
+  }
+
+  .triangle-bottom-small-red {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 7.5px 0 7.5px;
+    border-color: red transparent transparent transparent;
+  }
+
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: green;
+}
+
+.h-line {
+    border-width: 1px;
+    border-color: black;
+    position: relative;
+    top: 5px;
+}
+
+svg {
+    display: block;
+    margin: 0 auto;
+}
+
+.linkcolor a:visited{
+    color:blue;
 }
