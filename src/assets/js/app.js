@@ -91,7 +91,7 @@ let u_info = {
   " climbed to <span class = 'triangle-top-small-red'></span><span class = 'red-text'>2.6%</span> by May, the highest figure since late 2017, and Japan's GDP is also" +
   " <span class='linkcolor'><a href = 'https://www.statista.com/statistics/263607/gross-domestic-product-gdp-growth-rate-in-japan/' target='_blank' rel='noopener noreferrer'>projected</a></span> to shrink" +
   " by a colossal <span class = 'triangle-bottom-small-red'></span><span class = 'red-text'>5.2%</span> this year, as many workers in Japan hold jobs in name only. It remains to be seen if" +
-  " the coronavirus will derail Japan's economic recovery." +
+  " the coronavirus will derail Japan's economic recovery. " +
   "</p>",
 
 
