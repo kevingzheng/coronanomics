@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Unemployment Stats</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://d3js.org/d3.v4.js"></script>
+</head>
+<body onload = "loadUSA()">
+    <!-- infection data div -->
+    <div id = "unemployment-data" class = "unemployment-color">
+        <h1 id = "LaborStatistics" class = "title-font unemployment-format">Labor Statistics</h1>
+        <!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
+
+        <form>
+            <label class="container1">USA
+                <input type="checkbox" checked = "checked" onclick='changeTo("usa-data", usacsv, u_USAEnabled, "usa")'>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container1">Japan
+                <input type="checkbox" onclick ='changeTo("japan-data", japancsv, u_japanEnabled, "japan")'>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container1">France
+                <input type="checkbox" onclick='changeTo("france-data", francecsv, u_franceEnabled, "france")'>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container1">Germany
+                <input type="checkbox" onclick='changeTo("germany-data", germanycsv, u_germanyEnabled, "germany")'>
+                <span class="checkmark"></span>
+            </label>
+            <label class="container1">United Kingdom
+                <input type="checkbox" onclick='changeTo("unitedkingdom-data", unitedkingdomcsv, u_unitedkingdomEnabled, "unitedkingdom")'>
+                <span class="checkmark"></span>
+            </label>
+        </form>
+
+    <!-- D3 graph for unemployment data -->
+        <div id = "unemployment-graph" class = title-font>
+
+        </div>
+
+    <!-- paragraph description for labor statistics -->
+        <p id = 'unemployment-paragraph' class = 'title-font paragraph-size' >
+            Click on a line in the graph to learn more about the country's labor statistics.
+        </p>
+
+    </div>
+
+    <script src="./assets/js/laborstats.js"></script>
+
+    
+</body>
+</html>
