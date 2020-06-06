@@ -14,13 +14,17 @@
 .earth-background {
     color: #D7263D;
     background-image: url("./../img/earth2.jpg");
-    padding: 100px;
+    /* padding: 100px; */
     font-size: 30px;
     height: 1000px;
     text-align: center;
 }
 
 .navbar {
+    margin-bottom: 0!important;
+}
+
+.navtabs {
     position: relative;
     top: 400px;
     width: 100%;
@@ -381,4 +385,21 @@ svg {
 
 .linkcolor a:visited{
     color:blue;
+}
+
+.no-style{ 
+    text-decoration: none !important
+}
+
+.navbar-custom {
+    background-color: #D7263D;
+
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-header{
+    margin-left: auto 
 }
