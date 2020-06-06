@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 // D3
 var margin = {
-  top:10,
+  top:10, 
   right:30,
   bottom:60,
   left:60
@@ -116,7 +116,7 @@ let u_info = {
   "<span class = 'green-text'>+0.1%</span> from April 2020)</h1>" +
   "<hr class = 'h-line'>" + "<br>" +
   "<p class = 'unemployment-paragraph'>" +
-  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
+  "Lorem ipsum a dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" +
   "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
   "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo deserunt, neque veritatis totam non, sapiente" + 
   "distinctio amet beatae ipsa in adipisci magni facilis. Libero, animi dolore. Itaque veniam eveniet eos?" +
