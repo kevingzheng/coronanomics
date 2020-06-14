@@ -11,47 +11,57 @@
 	<script src="https://d3js.org/d3.v4.js"></script>
 </head>
 <body onload = "loadUSA()">
-    <!-- infection data div -->
-    <div id = "unemployment-data" class = "unemployment-color">
-        <h1 id = "LaborStatistics" class = "title-font unemployment-format">Labor Statistics</h1>
-        <!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
+  <!-- navbar -->
+  <div class="topnav title-font">
+    <a class="active" href="./index.html">Home</a>
+    <a href="./infectiondata.html">Infection Data</a>
+    <a href="./stocks.html">Stock Prices</a>
+    <a href="./laborstats.html">Labor Statistics</a>
+    <a href="./inflation">Inflation</a>
+    <a href="./about">About</a>
+  </div>
 
-        <form>
-            <label class="container1">USA
-                <input type="checkbox" checked = "checked" onclick='changeTo("usa-data", usacsv, u_USAEnabled, "usa")'>
-                <span class="checkmark"></span>
-            </label>
-            <label class="container1">Japan
-                <input type="checkbox" onclick ='changeTo("japan-data", japancsv, u_japanEnabled, "japan")'>
-                <span class="checkmark"></span>
-            </label>
-            <label class="container1">France
-                <input type="checkbox" onclick='changeTo("france-data", francecsv, u_franceEnabled, "france")'>
-                <span class="checkmark"></span>
-            </label>
-            <label class="container1">Germany
-                <input type="checkbox" onclick='changeTo("germany-data", germanycsv, u_germanyEnabled, "germany")'>
-                <span class="checkmark"></span>
-            </label>
-            <label class="container1">United Kingdom
-                <input type="checkbox" onclick='changeTo("unitedkingdom-data", unitedkingdomcsv, u_unitedkingdomEnabled, "unitedkingdom")'>
-                <span class="checkmark"></span>
-            </label>
-        </form>
+  <!-- infection data div -->
+  <div id = "unemployment-data" class = "unemployment-color">
+      <h1 id = "LaborStatistics" class = "title-font unemployment-format">Labor Statistics</h1>
+      <!-- <img class = "unemployment-graph" src ="./assets/img/basicgraph.jpg"> -->
 
-    <!-- D3 graph for unemployment data -->
-        <div id = "unemployment-graph" class = title-font>
+      <form>
+          <label class="container1">USA
+              <input type="checkbox" checked = "checked" onclick='changeTo("usa-data", usacsv, u_USAEnabled, "usa")'>
+              <span class="checkmark"></span>
+          </label>
+          <label class="container1">Japan
+              <input type="checkbox" onclick ='changeTo("japan-data", japancsv, u_japanEnabled, "japan")'>
+              <span class="checkmark"></span>
+          </label>
+          <label class="container1">France
+              <input type="checkbox" onclick='changeTo("france-data", francecsv, u_franceEnabled, "france")'>
+              <span class="checkmark"></span>
+          </label>
+          <label class="container1">Germany
+              <input type="checkbox" onclick='changeTo("germany-data", germanycsv, u_germanyEnabled, "germany")'>
+              <span class="checkmark"></span>
+          </label>
+          <label class="container1">United Kingdom
+              <input type="checkbox" onclick='changeTo("unitedkingdom-data", unitedkingdomcsv, u_unitedkingdomEnabled, "unitedkingdom")'>
+              <span class="checkmark"></span>
+          </label>
+      </form>
 
-        </div>
+  <!-- D3 graph for unemployment data -->
+      <div id = "unemployment-graph" class = title-font>
 
-    <!-- paragraph description for labor statistics -->
-        <p id = 'unemployment-paragraph' class = 'title-font paragraph-size' >
-            Click on a line in the graph to learn more about the country's labor statistics.
-        </p>
+      </div>
 
-    </div>
+  <!-- paragraph description for labor statistics -->
+      <p id = 'unemployment-paragraph' class = 'title-font paragraph-size' >
+          Click on a line in the graph to learn more about the country's labor statistics.
+      </p>
 
-    <script src="./assets/js/laborstats.js"></script>
+  </div>
+
+  <script src="./assets/js/laborstats.js"></script>
 
     
 </body>
