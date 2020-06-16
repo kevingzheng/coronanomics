@@ -11,7 +11,15 @@ def main():
         with open('SPY_1yr_new.csv', mode='a') as outfile:
             # writer = csv.writer(outfile)
             for rows in reader:
-                outfile.write(rows[0] + ',' + rows[1] + '\n')
+                # Y-m-d
+                # 06/12/1990
+                result = ""
+                result += rows[0][6:10]
+                result += '-'
+                result += rows[0][3:5]
+                result += '-'
+                result += rows[0][:2]
+                outfile.write(result + ',' + rows[1][1:] + '\n')
 
 if __name__ == "__main__":
     main()
