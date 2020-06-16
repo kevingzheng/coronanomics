@@ -16,9 +16,9 @@ def main():
                 result = ""
                 result += rows[0][6:10]
                 result += '-'
-                result += rows[0][3:5]
-                result += '-'
                 result += rows[0][:2]
+                result += '-'
+                result += rows[0][3:5]
                 outfile.write(result + ',' + rows[1][1:] + '\n')
 
 if __name__ == "__main__":
