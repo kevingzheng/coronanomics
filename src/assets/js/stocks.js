@@ -23,9 +23,6 @@ $(document).ready(function() {
 
 
 
-
-// D3
-
 // D3
 var margin = {
     top:10, 
@@ -33,27 +30,30 @@ var margin = {
     bottom:60,
     left:60
   };
-  
-  var width = 500 - margin.left - margin.right;
-  var height = 400 - margin.top - margin.bottom;
+
+var width = 500 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+
+// State variables for stock data display
+let djia_loaded = true;
 
 
-  // CSV declarations
-  let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/SPY_1yr_new.csv";
+// CSV declarations
+let djia_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
 
-  ////////////////////////////////
-  ////////////////////////////////
-  // Load stocks graph
-  var svg = d3.select("#stocks-graph")
-            .append("svg")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-              .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+////////////////////////////////
+////////////////////////////////
+// Load stocks graph
+var svg = d3.select("#stocks-graph")
+          .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+          .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // Onload - display indexes
 function loadStockGraph() {
-    d3.csv(spy_csv,
+    d3.csv(djia_csv,
 
         function(d) {
             return {
@@ -122,7 +122,7 @@ function loadStockGraph() {
       
             svg.append("path")
               .datum(data)
-              .attr("id", "spy-data")
+              .attr("id", "djia-data")
               .attr("fill", "none")
               .attr("stroke", "url(#line-gradient)")
               .attr("stroke-width", 2)
@@ -131,4 +131,8 @@ function loadStockGraph() {
                     .y(function(d) {return y(d.value) })
                     ) 
         })
+}
+
+function loadIndices() {
+
 }
