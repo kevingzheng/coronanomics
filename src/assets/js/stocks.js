@@ -36,6 +36,8 @@ var height = 400 - margin.top - margin.bottom;
 
 // State variables for stock data display
 let djia_loaded = true;
+let gspc_loaded = false;
+let ixic_loaded = false;
 
 
 // CSV declarations
@@ -133,6 +135,7 @@ function loadStockGraph() {
         })
 }
 
+// Loads stock index data if not already
 function loadIndices() {
 
 }
