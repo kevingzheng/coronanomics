@@ -23,9 +23,6 @@ $(document).ready(function() {
 
 
 
-
-// D3
-
 // D3
 var margin = {
     top:10, 
@@ -39,7 +36,7 @@ var margin = {
 
 
   // CSV declarations
-  let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/SPY_1yr_new.csv";
+  let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/stockprices/SPY_1yr_new.csv";
 
   ////////////////////////////////
   ////////////////////////////////

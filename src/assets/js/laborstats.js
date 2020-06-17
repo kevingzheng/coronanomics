@@ -152,11 +152,11 @@ var margin = {
   let overMax = 0;
   // ONLOAD actions
   ////////////////////////////////
-  let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_1990_2020_bls_conv.csv";
-  let japancsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/japan.csv";
-  let francecsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/france.csv";
-  let germanycsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/germany.csv";
-  let unitedkingdomcsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/unitedkingdom.csv";
+  let usacsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_country/unemployment_1990_2020_bls_conv.csv";
+  let japancsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_country/japan.csv";
+  let francecsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_country/france.csv";
+  let germanycsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_country/germany.csv";
+  let unitedkingdomcsv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/master/src/assets/data/unemployment_country/unitedkingdom.csv";
   
   
   ////////////////////////////////
