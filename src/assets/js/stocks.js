@@ -35,11 +35,11 @@ var width = 500 - margin.left - margin.right;
 var height = 400 - margin.top - margin.bottom;
 
 // State variables for stock data display
-let spy_loaded = true;
+let djia_loaded = true;
 
 
 // CSV declarations
-let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
+let djia_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
 
 ////////////////////////////////
 ////////////////////////////////
@@ -53,7 +53,7 @@ var svg = d3.select("#stocks-graph")
 
 // Onload - display indexes
 function loadStockGraph() {
-    d3.csv(spy_csv,
+    d3.csv(djia_csv,
 
         function(d) {
             return {
@@ -122,7 +122,7 @@ function loadStockGraph() {
       
             svg.append("path")
               .datum(data)
-              .attr("id", "spy-data")
+              .attr("id", "djia-data")
               .attr("fill", "none")
               .attr("stroke", "url(#line-gradient)")
               .attr("stroke-width", 2)
