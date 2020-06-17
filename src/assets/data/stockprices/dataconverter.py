@@ -57,7 +57,7 @@ def dashesalt():
                     result += rows[0][5:7]
                     result += "-"
                     result += rows[0][8:10]
-                    outfile.write(result + ',' + rows[1][1:] + '\n')
+                    outfile.write(result + ',' + rows[1] + '\n')
                 else:
                     counter = 1
 

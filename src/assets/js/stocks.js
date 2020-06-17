@@ -39,7 +39,7 @@ let spy_loaded = true;
 
 
 // CSV declarations
-let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/SPY_1yr_new.csv";
+let spy_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
 
 ////////////////////////////////
 ////////////////////////////////
@@ -57,7 +57,7 @@ function loadStockGraph() {
 
         function(d) {
             return {
-                date: d3.timeParse("%Y/%m/%d")(d.date),
+                date: d3.timeParse("%Y-%m-%d")(d.date),
                 value: d.value
             }
         },
