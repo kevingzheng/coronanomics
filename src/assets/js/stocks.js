@@ -42,6 +42,8 @@ let ixic_loaded = false;
 
 // CSV declarations
 let djia_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
+let gspc_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/gspc_new.csv";
+let ixic_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/ixic_new.csv";
 
 ////////////////////////////////
 ////////////////////////////////
@@ -136,6 +138,6 @@ function loadStockGraph() {
 }
 
 // Loads stock index data if not already
-function loadIndices() {
+function loadIndexes() {
 
 }
