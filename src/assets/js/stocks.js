@@ -3,7 +3,7 @@
 
 ///////////////////////////////////////////
 ///////////////////////////////////////////
-// Fade-in effect
+// Fade-in effect (jQuery)
 const speed = 'fast';
 
 $('html, body').hide();
@@ -34,10 +34,14 @@ var margin = {
 var width = 500 - margin.left - margin.right;
 var height = 400 - margin.top - margin.bottom;
 
+// Store overall graph sizing for layering additional data on same graph
+let indexX = 0;
+let indexY = 0;
+let indexMax = 0;
+
 // State variables for stock data display
-let djia_loaded = true;
-let gspc_loaded = false;
-let ixic_loaded = false;
+// By default on page load, index data is displayed
+let index_loaded = true;
 
 
 // CSV declarations
@@ -55,9 +59,10 @@ var svg = d3.select("#stocks-graph")
           .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-// Onload - display indexes
-function loadStockGraph() {
-    d3.csv(djia_csv,
+////////////////////////////////
+// Build graph with the input data
+function buildStockGraph(csv_in) {
+    d3.csv(csv_in,
 
         function(d) {
             return {
@@ -79,9 +84,9 @@ function loadStockGraph() {
       
             const max = d3.max(data, function(d) {return +d.value; })
             
-            overMax = max;
+            indexMax = max;
   
-            overX = x;
+            indexX = x;
 
           // Y Axis
             var y = d3.scaleLinear()
@@ -90,7 +95,7 @@ function loadStockGraph() {
             svg.append("g")
               .call(d3.axisLeft(y));
 
-            overY = y;
+            indexY = y;
             
             svg.append("text")             
             .attr("transform",
@@ -137,7 +142,42 @@ function loadStockGraph() {
         })
 }
 
-// Loads stock index data if not already
-function loadIndexes() {
+////////////////////////////////
+// Add input index csv data to graph
+function loadIndex(index_csv) {
+    // Load gspc and ixic data on same graph
+    d3.csv(index_csv,
 
+      function(d) {
+        return {
+          date: d3.timeParse("%Y-%m-%d")(d.date),
+          value: d.value
+        }
+      },
+
+      function(data) {
+        var newx = indexX;
+
+        var newy = indexY;
+
+        svg.append("path")
+        .datum(data)
+        .attr("id", "gspc-data")
+        .attr("fill", "none")
+        .attr("stroke", "url(#line-gradient)")
+        .attr("stroke-width", 2)
+        .attr("d", d3.line()
+              .x(function(d) {return newx(d.date) })
+              .y(function(d) {return newy(d.value) })
+              ) 
+      })
+}
+
+////////////////////////////////
+// Add all indices to graph
+function loadAllIndices() {
+  buildStockGraph(djia_csv);
+  loadIndex(gspc_csv);
+  loadIndex(ixic_csv);
+  index_loaded = true;
 }
