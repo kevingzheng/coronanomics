@@ -41,13 +41,16 @@ let indexMax = 0;
 
 // State variables for stock data display
 // By default on page load, index data is displayed
-let index_loaded = true;
+let index_loaded = false;
 
 
 // CSV declarations
-let djia_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv";
-let gspc_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/gspc_new.csv";
-let ixic_csv = "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/ixic_new.csv";
+let csvStruct = 
+{
+  djia_csv : "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/djia_new.csv",
+  gspc_csv : "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/gspc_new.csv",
+  ixic_csv : "https://raw.githubusercontent.com/kevingzheng/coronanomics/dev/src/assets/data/stockprices/ixic_new.csv"
+}
 
 ////////////////////////////////
 ////////////////////////////////
@@ -62,7 +65,7 @@ var svg = d3.select("#stocks-graph")
 ////////////////////////////////
 // Build graph with the input data
 function buildStockGraph(csv_in) {
-    d3.csv(csv_in,
+    d3.csv(csvStruct[csv_in],
 
         function(d) {
             return {
@@ -131,7 +134,7 @@ function buildStockGraph(csv_in) {
       
             svg.append("path")
               .datum(data)
-              .attr("id", "djia-data")
+              .attr("id", csv_in)
               .attr("fill", "none")
               .attr("stroke", "url(#line-gradient)")
               .attr("stroke-width", 2)
@@ -146,7 +149,7 @@ function buildStockGraph(csv_in) {
 // Add input index csv data to graph
 function loadIndex(index_csv) {
     // Load gspc and ixic data on same graph
-    d3.csv(index_csv,
+    d3.csv(csvStruct[index_csv],
 
       function(d) {
         return {
@@ -162,7 +165,7 @@ function loadIndex(index_csv) {
 
         svg.append("path")
         .datum(data)
-        .attr("id", "gspc-data")
+        .attr("id", index_csv)
         .attr("fill", "none")
         .attr("stroke", "url(#line-gradient)")
         .attr("stroke-width", 2)
@@ -176,8 +179,16 @@ function loadIndex(index_csv) {
 ////////////////////////////////
 // Add all indices to graph
 function loadAllIndices() {
-  buildStockGraph(djia_csv);
-  loadIndex(gspc_csv);
-  loadIndex(ixic_csv);
-  index_loaded = true;
+  if(!index_loaded) {
+    index_loaded = true;
+    buildStockGraph("djia_csv");
+    loadIndex("gspc_csv");
+    loadIndex("ixic_csv");
+  }
+  else {
+    index_loaded = false;
+    for(const csv_id in csvStruct) {
+      svg.select("#" + csv_id).remove();
+    }
+  }
 }
