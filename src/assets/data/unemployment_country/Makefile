@@ -1,4 +1,4 @@
-# CSV separater file
+# CSV separator file
 # Pratheek Hegde
 EXECUTABLE = csvconvert
 CXX = g++
