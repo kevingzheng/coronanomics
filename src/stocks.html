@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Prices</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Poppins"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap-grid.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <!-- <script src="./../../jquery-csv-master/jquery-csv-master/src/jquery.csv.js"></script> -->
-</head>
-<body onload="loadAllIndices()">
-    <p id="beststocks">The best time to buy/sell stock X was to buy at time Y and
-        sell at time Z.
-    </p>
+  </head>
+  <body onload="loadAllIndices(); loadText(default_text)">
+    <!-- navbar -->
+    <div class="topnav title-font">
+      <a class="active" href="./index.html">Home</a>
+      <a href="./infectiondata.html">Infection Data</a>
+      <a href="./stocks.html">Stock Prices</a>
+      <a href="./laborstats.html">Labor Statistics</a>
+      <a href="./inflation">Inflation</a>
+      <a href="./about">About</a>
+    </div>
 
     <!-- Stocks Graph  -->
-    <div id = "stocks-graph" class = title-font>
+    <div id="stocks-graph" class="title-font"></div>
 
+    <div id="button-panel">
+      <form>
+        <label class="stockbox"
+          >Indices
+          <input type="checkbox" checked="checked" onclick="loadAllIndices()" />
+          <span class="checkmark"></span>
+        </label>
+      </form>
     </div>
 
-    <div id= "button-panel" >
-        <form>
-            <label class="stockbox">Indices
-                <input type="checkbox" checked = "checked" onclick="loadAllIndices()">
-                <span class="checkmark"></span>
-            </label>
-        </form>
-    </div>
+    <!-- paragraph that contains hovering dynamic text -->
+    <p id="stock-paragraph" class="title-font stock-paragraph-styling"></p>
 
     <script src="./assets/js/stocks.js"></script>
-</body>
+  </body>
 </html>
