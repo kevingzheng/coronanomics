@@ -393,7 +393,7 @@ svg {
 .stockbox {
   display: block;
   position: relative;
-  top: 200px;
+  top: 300px;
   right: 1200px;
   padding-left: 100px;
   margin-bottom: 12px;
@@ -410,4 +410,9 @@ svg {
   position: relative;
   left: 1400px;
   bottom: 250px;
+}
+
+#stocks-graph {
+  position: relative;
+  top: 150px;
 }
