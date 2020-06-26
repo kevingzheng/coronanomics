@@ -39,6 +39,7 @@ let indexMax = 0;
 // State variables for stock data display
 // By default on page load, index data is displayed
 let index_loaded = false;
+let tech_loaded = false;
 
 // CSV declarations
 let csvStruct = {
@@ -257,6 +258,23 @@ function loadAllIndices() {
   }
 }
 
+////////////////////////////////
+// Add all tech stocks to graph
+function loadTechStocks() {
+  if(!tech_loaded) {
+    tech_loaded = true;
+  }
+  else {
+    tech_loaded = false;
+
+  }
+}
+
+
+
+
+////////////////////////////////
+// Add all indices to graph
 function loadText(m) {
   document.getElementById("stock-paragraph").innerHTML = m;
 }

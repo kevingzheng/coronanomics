@@ -112,7 +112,7 @@ h2 {
 }
 
 .unemployment-format {
-  font-size: 70px;
+  font-size: 5vw;
   text-align: center;
   position: relative;
   top: 100px;
@@ -393,12 +393,12 @@ svg {
 .stockbox {
   display: block;
   position: relative;
-  top: 300px;
-  right: 1200px;
+  top: 50vh;
+  right: 70vw;
   padding-left: 100px;
   margin-bottom: 12px;
   cursor: pointer;
-  font-size: 22px;
+  font-size: 1.5vw;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -406,10 +406,10 @@ svg {
 }
 
 .stock-paragraph-styling {
-  font-size: 22px;
+  font-size:2vw;
   position: relative;
-  left: 1400px;
-  bottom: 250px;
+  left: 75vw;
+  bottom: 45vh;
 }
 
 #stocks-graph {
