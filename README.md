@@ -14,4 +14,6 @@ Coronanomics is written primarily in Javascript with HTML5/CSS, using jQuery, Bo
 <ins>Labor Stats</ins>
 ![Image of Labor Stats Page](src/assets/img/unemployment.PNG)
 
+## Licenses
+This project is licensed under the MIT License.
 
