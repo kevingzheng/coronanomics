@@ -10,8 +10,8 @@ Coronanomics is written primarily in Javascript with HTML5/CSS, using jQuery, Bo
 
 ## Images
 <ins>Landing Page</ins>
-![Image of Landing Page](./src/assets/img/landing_page.png)
+![Image of Landing Page](src/assets/img/landing_page.png)
 <ins>Labor Stats</ins>
-![Image of Labor Stats Page](./src/assets/img/unemployment.png)
+![Image of Labor Stats Page](src/assets/img/unemployment.png)
 
 
